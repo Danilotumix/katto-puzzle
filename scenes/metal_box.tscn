@@ -1,38 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://d08a0kv0isn00"]
+[gd_scene load_steps=4 format=3 uid="uid://q1jygg0ka2n"]
 
-[ext_resource type="Texture2D" uid="uid://cxolhsllrnhyg" path="res://arte/mechanisms/Caja.png" id="1_3inec"]
-[ext_resource type="Script" uid="uid://bw2e484fv51ab" path="res://scripts/metal_box.gd" id="1_ks2v0"]
+[ext_resource type="Texture2D" uid="uid://dow34uy4g5dml" path="res://arte/mechanisms/Cajametal.png" id="1_dsowr"]
+[ext_resource type="Script" uid="uid://bw2e484fv51ab" path="res://scripts/metal_box.gd" id="1_r671h"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ks2v0"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r671h"]
 radius = 9.0
 height = 48.0
 
-[node name="Box" type="RigidBody2D"]
+[node name="Metal Box" type="RigidBody2D"]
+mass = 5.0
 lock_rotation = true
 continuous_cd = 2
-script = ExtResource("1_ks2v0")
+script = ExtResource("1_r671h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_3inec")
+texture = ExtResource("1_dsowr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -15)
 rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_ks2v0")
+shape = SubResource("CapsuleShape2D_r671h")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(15, 0)
 rotation = -3.1415925
-shape = SubResource("CapsuleShape2D_ks2v0")
+shape = SubResource("CapsuleShape2D_r671h")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
 position = Vector2(-15, 0)
-shape = SubResource("CapsuleShape2D_ks2v0")
+shape = SubResource("CapsuleShape2D_r671h")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15)
 rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_ks2v0")
+shape = SubResource("CapsuleShape2D_r671h")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 24)

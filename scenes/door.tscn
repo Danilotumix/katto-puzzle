@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8km452tpfn78"]
+
+[ext_resource type="Script" uid="uid://bapu0nwjafgea" path="res://scripts/door.gd" id="1_uvdjg"]
+[ext_resource type="Texture2D" uid="uid://bks2t1qlcsf3q" path="res://arte/mechanisms/PuertaCerrada.png" id="2_83dcw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_la1wf"]
+size = Vector2(16, 112)
+
+[node name="Door" type="Node2D"]
+script = ExtResource("1_uvdjg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_83dcw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_la1wf")
