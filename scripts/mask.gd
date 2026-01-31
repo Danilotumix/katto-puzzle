@@ -3,6 +3,7 @@ extends AnimatedSprite2D
 # Configurable variables
 @export var hover_speed = 2.0  # How fast it moves up/down
 @export var hover_height = 10.0 # How far it moves (pixels)
+@export var mask : Constants.Mask
 
 # We need to remember where we started so we don't drift away
 @onready var start_y = position.y
@@ -45,3 +46,12 @@ func _process(delta):
 	
 	# Apply the new position
 	position.y = new_y
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name == "Katto":
+		if not body.masks.has(mask):
+			body.masks.append(mask)
+		var parent = get_parent()
+		parent.visible = false
+		parent.set_deferred("disabled", true)

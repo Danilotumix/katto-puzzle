@@ -6,6 +6,8 @@ extends CharacterBody2D
 
 var mask_index: int = Constants.Mask.NONE
 
+var masks = [mask_index]
+
 var SPEED = 0
 var JUMP_VELOCITY = 0
 var GRAVITY = 0
@@ -13,7 +15,7 @@ var PUSH_FORCE = 0
 
 func handleMaskChange():
 	SPEED = 300.0
-	JUMP_VELOCITY = -400.0
+	JUMP_VELOCITY = -500.0
 	GRAVITY = 1200
 	PUSH_FORCE = 100
 	if mask_index == Constants.Mask.GORILLA:
@@ -26,9 +28,12 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("ChangeMask"):
-		mask_index = mask_index + 1
-		if mask_index > Constants.Mask.size() - 1:
-			mask_index = 0
+		while true:
+			mask_index = mask_index + 1
+			if mask_index > Constants.Mask.size() - 1:
+				mask_index = 0
+			if masks.has(mask_index):
+				break;
 		handleMaskChange()
 
 func _physics_process(delta):
@@ -59,6 +64,7 @@ func _physics_process(delta):
 	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
+		print(collision)
 		# If the thing we hit is a RigidBody2D (like the box)
 		if collision.get_collider() is RigidBody2D:
 			# Calculate the direction: collision.get_normal() points OUT of the box towards the player.
@@ -67,3 +73,5 @@ func _physics_process(delta):
 			# Apply an impulse to the box to slide it
 			# We use inertia/mass to make sure it moves naturally
 			collision.get_collider().apply_central_impulse(push_direction * PUSH_FORCE)
+		if collision.get_collider().name == "Pickup":
+			pass
