@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var animated_sprite : Sprite2D
+@export var mask_sprite : Sprite2D
 @export var collision_shape : CollisionShape2D
 @export var label : Label
 
@@ -13,15 +14,27 @@ var JUMP_VELOCITY = 0
 var GRAVITY = 0
 var PUSH_FORCE = 0
 
+var GORILLA_SPRITESHEET = preload("res://arte/masks/masks_ss.png")
+
 func handleMaskChange():
 	SPEED = 300.0
 	JUMP_VELOCITY = -500.0
 	GRAVITY = 1200
 	PUSH_FORCE = 100
+	var sprite_sheet = null
 	if mask_index == Constants.Mask.GORILLA:
 		PUSH_FORCE = PUSH_FORCE * 5
+		sprite_sheet = GORILLA_SPRITESHEET
 	if mask_index == Constants.Mask.BUNNY:
 		JUMP_VELOCITY = JUMP_VELOCITY * 1.5
+	if sprite_sheet != null:
+		mask_sprite.visible = true
+		mask_sprite.texture = sprite_sheet
+		mask_sprite.hframes = 7  # Change this to the number of columns in your masks_ss.png
+		mask_sprite.vframes = 1  # Change this to the number of rows
+		mask_sprite.frame = 0    # Which specific face do you want? (0 = First, 1 = Second...)
+	else:
+		mask_sprite.visible = false
 
 func _ready():
 	handleMaskChange()

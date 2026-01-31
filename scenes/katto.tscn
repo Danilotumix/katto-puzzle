@@ -7,14 +7,18 @@
 radius = 25.0
 height = 80.0
 
-[node name="Katto" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "collision_shape")]
+[node name="Katto" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "mask_sprite", "collision_shape")]
 script = ExtResource("1_ui8ui")
 animated_sprite = NodePath("Sprite2D")
+mask_sprite = NodePath("MaskSprite")
 collision_shape = NodePath("CollisionShape2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_ui8ui")
 
+[node name="MaskSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -14)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 7)
+position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_o6emv")
