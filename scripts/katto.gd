@@ -12,17 +12,17 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	var is_crouching = false
-	if Input.is_action_pressed("crouch") and is_on_floor():
+	if Input.is_action_pressed("Crouch") and is_on_floor():
 		is_crouching = true
 		collision_shape.scale.y = 0.5 
 	else:
 		collision_shape.scale.y = 1.0
 
-	var direction = Input.get_axis("move_left", "move_right")
+	var direction = Input.get_axis("Left", "Right")
 	
 	var current_speed = CROUCH_SPEED if is_crouching else SPEED
 
