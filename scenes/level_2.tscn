@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=4 uid="uid://caoeqtumkav2m"]
 
 [ext_resource type="Script" uid="uid://dj8flvrrcpl1m" path="res://scripts/game.gd" id="1_que50"]
-[ext_resource type="Texture2D" uid="uid://b0n0aax35hova" path="res://arte/background/ConceptA3.png" id="2_hey2k"]
+[ext_resource type="Texture2D" uid="uid://cnbs8e7vmmc8l" path="res://arte/background/Level2Backgroud.png" id="2_que50"]
 [ext_resource type="Texture2D" uid="uid://bl2ojpbotqaph" path="res://arte/tileset/iglesia tileset completo.png" id="3_b4j7a"]
 [ext_resource type="PackedScene" uid="uid://d08a0kv0isn00" path="res://scenes/box.tscn" id="4_g2hoc"]
 [ext_resource type="PackedScene" uid="uid://q1jygg0ka2n" path="res://scenes/metal_box.tscn" id="5_fldb1"]
@@ -49,9 +49,8 @@ script = ExtResource("1_que50")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="MainBackground" type="Sprite2D" parent="."]
-position = Vector2(-1.0000001, 3)
-scale = Vector2(0.70519286, 0.6712447)
-texture = ExtResource("2_hey2k")
+position = Vector2(1.5258789e-05, 3.8146973e-05)
+texture = ExtResource("2_que50")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(0, -8)
@@ -60,9 +59,6 @@ tile_set = SubResource("TileSet_ppyta")
 
 [node name="Box" parent="." instance=ExtResource("4_g2hoc")]
 position = Vector2(-523, 290)
-
-[node name="Box2" parent="." instance=ExtResource("4_g2hoc")]
-position = Vector2(-528, 219)
 
 [node name="MetalBox" parent="." instance=ExtResource("5_fldb1")]
 position = Vector2(555, -198)
@@ -114,6 +110,7 @@ flip_h = true
 
 [node name="Area2D" parent="." instance=ExtResource("7_y0kc7")]
 position = Vector2(-552, -344)
+level_scene = "res://scenes/level_3.tscn"
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-72, 136)

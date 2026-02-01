@@ -2,7 +2,7 @@ extends Node
 
 var mask_index: int = Constants.Mask.NONE
 #var masks = [mask_index]
-var masks = [mask_index, Constants.Mask.GORILLA]
+var masks = [mask_index, Constants.Mask.GORILLA, Constants.Mask.BUNNY]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

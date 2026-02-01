@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cncv47etbn10b" path="res://scripts/level_transition.gd" id="1_g1ell"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vqo1y"]
-size = Vector2(32, 112)
+size = Vector2(32, 1072)
 
 [node name="Area2D" type="Area2D"]
 script = ExtResource("1_g1ell")

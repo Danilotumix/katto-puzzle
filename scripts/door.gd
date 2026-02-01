@@ -5,7 +5,7 @@ extends Node
 @onready var open_sound = $OpenSound
 @onready var close_sound = $CloseSound
 
-var is_open = false
+var pressed_count = 0
 var door_open = preload("res://arte/mechanisms/PuertaAbierta.png")
 var door_close = preload("res://arte/mechanisms/PuertaCerrada.png")
 
@@ -24,15 +24,23 @@ func _on_button_state_changed(is_pressed):
 		close()
 
 func open():
-	if not is_open:
+	if is_closed():
 		open_sound.play()
-	is_open = true
-	collision.set_deferred("disabled", true)
-	sprite.texture = door_open
+		collision.set_deferred("disabled", true)
+		sprite.texture = door_open
+	pressed_count += 1
 
 func close():
-	if is_open:
+	if pressed_count < 0:
+		pressed_count = 0
+	if is_open() and pressed_count < 2:
 		close_sound.play()
-	is_open = false
-	collision.set_deferred("disabled", false)
-	sprite.texture = door_close
+		collision.set_deferred("disabled", false)
+		sprite.texture = door_close
+	pressed_count -= 1
+
+func is_open():
+	return pressed_count > 0
+
+func is_closed():
+	return pressed_count <= 0

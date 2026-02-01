@@ -179,7 +179,7 @@ height = 52.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ldxf2")
-animation = &"owl"
+animation = &"bunny"
 script = ExtResource("2_gyxxy")
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -13,6 +13,8 @@ var image_down = preload("res://arte/mechanisms/BotonPresionado.png")
 
 @export var target_door: Node2D
 
+var was_pressed = false
+
 func _ready():
 	# Connect the Area2D signals via code (or use the Editor Node tab)
 	area.body_entered.connect(_on_body_changed)
@@ -32,13 +34,15 @@ func _on_body_changed(_body):
 			break
 			
 	# 4. Update Visuals and Signal
-	if is_pressed:
+	if not was_pressed and is_pressed:
 		sprite.texture = image_down
 		button_state_changed.emit(true)
 		target_door.open()
-	else:
+	elif was_pressed and not is_pressed:
 		sprite.texture = image_up
 		button_state_changed.emit(false)
 		target_door.close()
+
+	was_pressed = is_pressed
 
 	switch_sound.play()

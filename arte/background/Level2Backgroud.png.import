@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmsqbkn17vvg"
-path="res://.godot/imported/ConceptA3.png-82a50c84e51408a8529b15d38847b92a.ctex"
+uid="uid://cnbs8e7vmmc8l"
+path="res://.godot/imported/Level2Backgroud.png-1e585460efe4cf792675b8e23c01d55b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://arte/background/ConceptA3.png"
-dest_files=["res://.godot/imported/ConceptA3.png-82a50c84e51408a8529b15d38847b92a.ctex"]
+source_file="res://arte/background/Level2Backgroud.png"
+dest_files=["res://.godot/imported/Level2Backgroud.png-1e585460efe4cf792675b8e23c01d55b.ctex"]
 
 [params]
 

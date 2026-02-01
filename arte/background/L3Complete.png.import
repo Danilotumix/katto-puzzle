@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmsqbkn17vvg"
-path="res://.godot/imported/ConceptA3.png-82a50c84e51408a8529b15d38847b92a.ctex"
+uid="uid://1xcopg8olkoc"
+path="res://.godot/imported/L3Complete.png-496081c5feef45fa6f52ee76ea9d810f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://arte/background/ConceptA3.png"
-dest_files=["res://.godot/imported/ConceptA3.png-82a50c84e51408a8529b15d38847b92a.ctex"]
+source_file="res://arte/background/L3Complete.png"
+dest_files=["res://.godot/imported/L3Complete.png-496081c5feef45fa6f52ee76ea9d810f.ctex"]
 
 [params]
 

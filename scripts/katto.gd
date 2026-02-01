@@ -11,7 +11,8 @@ extends CharacterBody2D
 @onready var jump_sound = $JumpSound
 @onready var pick_box_sound = $PickBoxSound
 @onready var throw_box_sound = $ThrowBoxSound
-@onready var drag_box_sound = $DragBoxSound
+@onready var flap_sound = $FlapSound
+@onready var wing_sprite = $WingSprite
 
 var held_object: RigidBody2D = null
 var can_pick_metal_box = false
@@ -47,7 +48,8 @@ func handleMaskChange():
 	PUSH_FORCE = 100
 	THROW_POWER = 100
 	METAL_BOX_THROW_POWER = 0
-	can_pick_metal_box = false;
+	wing_sprite.visible = false
+	can_pick_metal_box = false
 	can_fly = false
 	var sprite_sheet = null
 
@@ -62,6 +64,7 @@ func handleMaskChange():
 	if Global.mask_index == Constants.Mask.OWL:
 		sprite_sheet = OWL_SPRITESHEET
 		can_fly = true
+		wing_sprite.visible = true
 	if sprite_sheet != null:
 		mask_sprite.visible = true
 		mask_sprite.texture = sprite_sheet
@@ -76,11 +79,19 @@ func _ready():
 	handleMaskChange()
 
 func _process(delta):
-	if Input.is_action_just_pressed("ChangeMask"):
+	if Input.is_action_just_pressed("ChangeMaskRight"):
 		while true:
 			Global.mask_index = Global.mask_index + 1
 			if Global.mask_index > Constants.Mask.size() - 1:
 				Global.mask_index = 0
+			if Global.masks.has(Global.mask_index):
+				break;
+		handleMaskChange()
+	if Input.is_action_just_pressed("ChangeMaskLeft"):
+		while true:
+			Global.mask_index = Global.mask_index - 1
+			if Global.mask_index < 0:
+				Global.mask_index = Constants.Mask.size() - 1
 			if Global.masks.has(Global.mask_index):
 				break;
 		handleMaskChange()
@@ -110,9 +121,14 @@ func _physics_process(delta):
 	elif !was_on_floor:
 		animation_lock = false
 
-	if Input.is_action_just_pressed("Jump") and is_on_floor() and not is_locked:
-		velocity.y = JUMP_VELOCITY
-		jump_sound.play()
+	if Input.is_action_just_pressed("Jump") and not is_locked:
+		if is_on_floor():
+			velocity.y = JUMP_VELOCITY
+			jump_sound.play()
+		elif can_fly:
+			velocity.y = JUMP_VELOCITY
+			wing_sprite.play("flap")
+			flap_sound.play()
 
 	var direction = Input.get_axis("Left", "Right")
 

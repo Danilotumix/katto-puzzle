@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cckt01ixpnkx4" path="res://arte/background/fondo 2 nivel 1.png" id="2_2os1m"]
 [ext_resource type="PackedScene" uid="uid://b16j1fahe6oxy" path="res://scenes/menu/pause-menu.tscn" id="2_go7sj"]
 [ext_resource type="PackedScene" uid="uid://d08a0kv0isn00" path="res://scenes/box.tscn" id="3_74lek"]
-[ext_resource type="Texture2D" uid="uid://kuhbw1fkl0ry" path="res://arte/background/Small dungeon.png" id="3_yk7ts"]
+[ext_resource type="Texture2D" uid="uid://cfqkibdejjro3" path="res://arte/background/Small dungeon2.png" id="3_go7sj"]
 [ext_resource type="PackedScene" uid="uid://q1jygg0ka2n" path="res://scenes/metal_box.tscn" id="4_j5jx5"]
 [ext_resource type="Texture2D" uid="uid://dmylcbpsg82lf" path="res://arte/tileset/mazmorra tileset kongpleto.png" id="6_2y5yt"]
 [ext_resource type="PackedScene" uid="uid://rbc4vvi0igh5" path="res://scenes/button.tscn" id="7_at5dv"]
@@ -45,12 +45,10 @@ texture = ExtResource("6_2y5yt")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_2os1m")
 
-[node name="Game" type="Node2D"]
+[node name="Game2" type="Node2D"]
 script = ExtResource("1_lpvoh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="PauseMenu" parent="." instance=ExtResource("2_go7sj")]
 
 [node name="MainBackground" type="Sprite2D" parent="."]
 position = Vector2(0, 1.5258789e-05)
@@ -59,7 +57,7 @@ texture = ExtResource("2_2os1m")
 
 [node name="CellBackground" type="Sprite2D" parent="."]
 position = Vector2(-384, 224)
-texture = ExtResource("3_yk7ts")
+texture = ExtResource("3_go7sj")
 
 [node name="Node2D" parent="." instance=ExtResource("3_74lek")]
 position = Vector2(-451, 302)
@@ -87,7 +85,6 @@ target_door = NodePath("../Door")
 position = Vector2(560, 246)
 
 [node name="AnimatedSprite2D" parent="Pickup" index="0"]
-animation = &"bunny"
 mask = 1
 
 [node name="Door" parent="." instance=ExtResource("9_uacia")]
@@ -100,4 +97,8 @@ position = Vector2(-558, 282)
 position = Vector2(-624, 16)
 level_scene = "res://scenes/level_2.tscn"
 
+[node name="PauseMenu" parent="." instance=ExtResource("2_go7sj")]
+visible = false
+
 [editable path="Pickup"]
+[editable path="PauseMenu"]

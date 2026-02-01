@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmsqbkn17vvg"
-path="res://.godot/imported/ConceptA3.png-82a50c84e51408a8529b15d38847b92a.ctex"
+uid="uid://coeh1umq5lwfo"
+path="res://.godot/imported/gatowings.png-e52250f07bfa961d7d2b0e1b3fc97317.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://arte/background/ConceptA3.png"
-dest_files=["res://.godot/imported/ConceptA3.png-82a50c84e51408a8529b15d38847b92a.ctex"]
+source_file="res://arte/player/gatowings.png"
+dest_files=["res://.godot/imported/gatowings.png-e52250f07bfa961d7d2b0e1b3fc97317.ctex"]
 
 [params]
 

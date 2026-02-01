@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var level_scene : String
+@export var mask_required : Constants.Mask
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,5 +14,5 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.name == "Katto":
+	if body.name == "Katto" and (mask_required == Constants.Mask.NONE or Global.mask_index == mask_required):
 		get_tree().change_scene_to_file(level_scene)

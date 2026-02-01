@@ -1,6 +1,7 @@
-[gd_scene load_steps=100 format=3 uid="uid://dafjlljh1c1kd"]
+[gd_scene load_steps=110 format=3 uid="uid://dafjlljh1c1kd"]
 
 [ext_resource type="Script" uid="uid://c4uunl0dc5rkh" path="res://scripts/katto.gd" id="1_ui8ui"]
+[ext_resource type="Texture2D" uid="uid://coeh1umq5lwfo" path="res://arte/player/gatowings.png" id="2_3dhs6"]
 [ext_resource type="Texture2D" uid="uid://cfr3bs3eew6gs" path="res://arte/player/gatocarriyngbox.png" id="2_xko5r"]
 [ext_resource type="AudioStream" uid="uid://d06e1nu1f76bt" path="res://audio/sfx/JUMP 1.mp3" id="3_4e1m8"]
 [ext_resource type="Texture2D" uid="uid://1ecvv5mpmbqg" path="res://arte/player/gatofall.png" id="3_6ewhf"]
@@ -17,6 +18,64 @@
 [ext_resource type="Texture2D" uid="uid://k3xx0dhghgde" path="res://arte/player/gato rowlet mask.png" id="8_nxixr"]
 [ext_resource type="Texture2D" uid="uid://cjayateu4el7q" path="res://arte/player/gatothrowingbox.png" id="11_lu8y5"]
 [ext_resource type="Texture2D" uid="uid://cykqq54mtg3tn" path="res://arte/masks/mascara gorila.png" id="12_nxixr"]
+[ext_resource type="AudioStream" uid="uid://ob178ktktjuy" path="res://audio/sfx/FLAP.mp3" id="19_vvd46"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enmt4"]
+atlas = ExtResource("2_3dhs6")
+region = Rect2(0, 0, 139, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5485j"]
+atlas = ExtResource("2_3dhs6")
+region = Rect2(139, 0, 139, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18q00"]
+atlas = ExtResource("2_3dhs6")
+region = Rect2(278, 0, 139, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajy5q"]
+atlas = ExtResource("2_3dhs6")
+region = Rect2(417, 0, 139, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnamf"]
+atlas = ExtResource("2_3dhs6")
+region = Rect2(556, 0, 139, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttfnn"]
+atlas = ExtResource("2_3dhs6")
+region = Rect2(695, 0, 139, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xe74"]
+atlas = ExtResource("2_3dhs6")
+region = Rect2(0, 0, 139, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lu8y5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enmt4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5485j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18q00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajy5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnamf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttfnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xe74")
+}],
+"loop": false,
+"name": &"flap",
+"speed": 10.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t3te6"]
 atlas = ExtResource("2_xko5r")
@@ -450,7 +509,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"pickup_mask_bunny",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -494,7 +553,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"pickup_mask_gorilla",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -538,7 +597,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"pickup_mask_owl",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -658,9 +717,15 @@ animated_sprite = NodePath("AnimatedSprite2D")
 mask_sprite = NodePath("MaskSprite")
 collision_shape = NodePath("CollisionShape2D")
 
+[node name="WingSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_lu8y5")
+animation = &"flap"
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xko5r")
-animation = &"push"
+animation = &"pickup_mask_owl"
 
 [node name="MaskSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -14)
@@ -692,6 +757,9 @@ stream = ExtResource("4_0dncy")
 
 [node name="ThrowBoxSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_hldc1")
+
+[node name="FlapSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_vvd46")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

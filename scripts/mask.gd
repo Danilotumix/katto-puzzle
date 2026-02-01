@@ -54,11 +54,14 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Katto":
-		if not Global.masks.has(mask):
-			Global.masks.append(mask)
 		var parent = get_parent()
 		parent.visible = false
 		parent.set_deferred("disabled", true)
+
+		if Global.masks.has(mask):
+			return
+
+		Global.masks.append(mask)
 		pickup_sound.play()
 
 		body.animation_lock = false
