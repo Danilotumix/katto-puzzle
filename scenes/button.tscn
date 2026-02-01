@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://bwpmr5regkeh" path="res://audio/sfx/SWITCH BOTON.mp3" id="3_3q610"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7y4x"]
-size = Vector2(48, 5)
+size = Vector2(48, 4)
 
 [node name="Button" type="Node2D"]
 script = ExtResource("1_rhj8v")
@@ -16,7 +16,7 @@ texture = ExtResource("2_rhj8v")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -1.5)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_i7y4x")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

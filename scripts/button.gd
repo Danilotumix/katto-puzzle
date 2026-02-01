@@ -25,14 +25,14 @@ func _ready():
 func _on_body_changed(_body):
 	# 3. Check if anything valid is pressing the button
 	var bodies = area.get_overlapping_bodies()
-	
+
 	var is_pressed = false
 	for body in bodies:
 		# Optional: Check for specific groups if you only want Crates/Players to trigger it
-		if body.name != "TileMap" && body != button_base: # Ignore the floor itself!
+		if body != button_base: # Ignore the floor itself!
 			is_pressed = true
 			break
-			
+
 	# 4. Update Visuals and Signal
 	if not was_pressed and is_pressed:
 		sprite.texture = image_down
