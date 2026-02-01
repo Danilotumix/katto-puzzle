@@ -17,6 +17,8 @@ func _ready():
 		play("gorilla")
 	elif mask == Constants.Mask.BUNNY:
 		play("bunny")
+	elif mask == Constants.Mask.OWL:
+		play("owl")
 
 func _on_animation_finished():
 	# 1. Flip the horizontal state (True becomes False, False becomes True)

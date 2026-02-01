@@ -3,7 +3,6 @@ extends CharacterBody2D
 @export var animated_sprite : AnimatedSprite2D
 @export var mask_sprite : Sprite2D
 @export var collision_shape : CollisionShape2D
-@export var label : Label
 
 @onready var hold_position = $BoxMarker
 @onready var pickup_ray = $PickupRay

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://caoeqtumkav2m"]
+[gd_scene load_steps=14 format=4 uid="uid://caoeqtumkav2m"]
 
 [ext_resource type="Script" uid="uid://dj8flvrrcpl1m" path="res://scripts/game.gd" id="1_que50"]
 [ext_resource type="Texture2D" uid="uid://cnbs8e7vmmc8l" path="res://arte/background/Level2Backgroud.png" id="2_que50"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ciffsxyiir4f6" path="res://scenes/pickup.tscn" id="8_wdtqu"]
 [ext_resource type="PackedScene" uid="uid://c8km452tpfn78" path="res://scenes/door.tscn" id="9_7qsfm"]
 [ext_resource type="PackedScene" uid="uid://dafjlljh1c1kd" path="res://scenes/katto.tscn" id="10_bv48q"]
+[ext_resource type="PackedScene" uid="uid://b16j1fahe6oxy" path="res://scenes/menu/pause-menu.tscn" id="11_hey2k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wo48x"]
 texture = ExtResource("3_b4j7a")
@@ -83,13 +84,6 @@ position = Vector2(-8, 0)
 [node name="CollisionShape2D" parent="Door2/StaticBody2D" index="0"]
 position = Vector2(-16, 0)
 
-[node name="Label" type="Label" parent="."]
-offset_left = 498.0
-offset_top = -328.0
-offset_right = 608.0
-offset_bottom = -264.0
-text = "Máscara: "
-
 [node name="Pickup" parent="." instance=ExtResource("8_wdtqu")]
 position = Vector2(-582, 84)
 
@@ -105,7 +99,7 @@ position = Vector2(-196, 29)
 [node name="Katto" parent="." instance=ExtResource("10_bv48q")]
 position = Vector2(610, 278)
 
-[node name="AnimatedSprite2D" parent="Katto" index="0"]
+[node name="AnimatedSprite2D" parent="Katto" index="1"]
 flip_h = true
 
 [node name="Area2D" parent="." instance=ExtResource("7_y0kc7")]
@@ -114,6 +108,9 @@ level_scene = "res://scenes/level_3.tscn"
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-72, 136)
+
+[node name="PauseMenu" parent="." instance=ExtResource("11_hey2k")]
+visible = false
 
 [editable path="Door"]
 [editable path="Door2"]

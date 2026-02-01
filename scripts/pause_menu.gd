@@ -2,8 +2,10 @@ extends CanvasLayer
 
 @onready var botones = [$ResumeButton, $RestartButton, $QuitButton]
 
+var initial_masks = Global.masks.duplicate(false)
+
 func _ready():
-	visible = false 
+	visible = false
 	for btn in botones:
 		btn.mouse_entered.connect(_on_boton_mouse_entered.bind(btn))
 		btn.mouse_exited.connect(_on_boton_mouse_exited.bind(btn))
@@ -21,7 +23,9 @@ func _on_resume_button_pressed():
 	toggle_pause() 
 
 func _on_restart_button_pressed():
-	get_tree().paused = false 
+	get_tree().paused = false
+	Global.masks = initial_masks
+	Global.mask_index = Constants.Mask.NONE
 	get_tree().reload_current_scene()
 
 func _on_quit_button_pressed():

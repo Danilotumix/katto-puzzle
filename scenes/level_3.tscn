@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://b7i57bsitrmvy"]
+[gd_scene load_steps=14 format=4 uid="uid://b7i57bsitrmvy"]
 
 [ext_resource type="Script" uid="uid://dj8flvrrcpl1m" path="res://scripts/game.gd" id="1_vcx5n"]
 [ext_resource type="Texture2D" uid="uid://2rf1c1cpfy3y" path="res://arte/background/L3.1.png" id="2_vcx5n"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dafjlljh1c1kd" path="res://scenes/katto.tscn" id="9_8uepa"]
 [ext_resource type="Texture2D" uid="uid://c8u7ux7ju3xbn" path="res://arte/background/L3Trees.png" id="10_56dhn"]
 [ext_resource type="PackedScene" uid="uid://b5o6fe0786riq" path="res://scenes/level_transition.tscn" id="10_q7pjq"]
+[ext_resource type="PackedScene" uid="uid://b16j1fahe6oxy" path="res://scenes/menu/pause-menu.tscn" id="11_56dhn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_56dhn"]
 texture = ExtResource("3_vcx5n")
@@ -72,7 +73,7 @@ position = Vector2(-96, 180)
 target_door = NodePath("../Door")
 
 [node name="Button3" parent="." node_paths=PackedStringArray("target_door") instance=ExtResource("6_5xqnf")]
-position = Vector2(-267, -12)
+position = Vector2(-216, -12)
 target_door = NodePath("../Door2")
 
 [node name="Button4" parent="." node_paths=PackedStringArray("target_door") instance=ExtResource("6_5xqnf")]
@@ -93,13 +94,6 @@ position = Vector2(-488, -64)
 
 [node name="Door3" parent="." instance=ExtResource("7_una4e")]
 position = Vector2(-536, -64)
-
-[node name="Label" type="Label" parent="."]
-offset_left = 498.0
-offset_top = -328.0
-offset_right = 608.0
-offset_bottom = -264.0
-text = "Máscara: "
 
 [node name="Pickup" parent="." instance=ExtResource("8_ema3p")]
 position = Vector2(-579, -65)
@@ -130,9 +124,11 @@ position = Vector2(432, -32)
 rotation = 1.5707964
 
 [node name="TreeCupsBackground" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(0, -362)
 texture = ExtResource("10_56dhn")
+
+[node name="PauseMenu" parent="." instance=ExtResource("11_56dhn")]
+visible = false
 
 [editable path="Door"]
 [editable path="Door2"]
