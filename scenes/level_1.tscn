@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=4 uid="uid://d3tvn22q4jtrj"]
+[gd_scene load_steps=15 format=4 uid="uid://d3tvn22q4jtrj"]
 
-[ext_resource type="PackedScene" uid="uid://j7oc05tnqw8x" path="res://scenes/katto.tscn" id="1_74lek"]
-[ext_resource type="Texture2D" uid="uid://b0n0aax35hova" path="res://arte/background/ConceptA3.png" id="1_j5jx5"]
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_lpvoh"]
+[ext_resource type="Script" uid="uid://dj8flvrrcpl1m" path="res://scripts/game.gd" id="1_lpvoh"]
+[ext_resource type="Texture2D" uid="uid://cckt01ixpnkx4" path="res://arte/background/fondo 2 nivel 1.png" id="2_2os1m"]
+[ext_resource type="PackedScene" uid="uid://b16j1fahe6oxy" path="res://scenes/menu/pause-menu.tscn" id="2_go7sj"]
 [ext_resource type="PackedScene" uid="uid://d08a0kv0isn00" path="res://scenes/box.tscn" id="3_74lek"]
 [ext_resource type="Texture2D" uid="uid://kuhbw1fkl0ry" path="res://arte/background/Small dungeon.png" id="3_yk7ts"]
 [ext_resource type="PackedScene" uid="uid://q1jygg0ka2n" path="res://scenes/metal_box.tscn" id="4_j5jx5"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://rbc4vvi0igh5" path="res://scenes/button.tscn" id="7_at5dv"]
 [ext_resource type="PackedScene" uid="uid://ciffsxyiir4f6" path="res://scenes/pickup.tscn" id="8_jcd4p"]
 [ext_resource type="PackedScene" uid="uid://c8km452tpfn78" path="res://scenes/door.tscn" id="9_uacia"]
+[ext_resource type="PackedScene" uid="uid://dafjlljh1c1kd" path="res://scenes/katto.tscn" id="10_2os1m"]
 [ext_resource type="PackedScene" uid="uid://b5o6fe0786riq" path="res://scenes/level_transition.tscn" id="11_2os1m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2os1m"]
@@ -49,10 +50,12 @@ script = ExtResource("1_lpvoh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="PauseMenu" parent="." instance=ExtResource("2_go7sj")]
+
 [node name="MainBackground" type="Sprite2D" parent="."]
-position = Vector2(-1.0000001, 3)
-scale = Vector2(0.70519286, 0.6712447)
-texture = ExtResource("1_j5jx5")
+position = Vector2(0, 1.5258789e-05)
+scale = Vector2(1, 1.1118643)
+texture = ExtResource("2_2os1m")
 
 [node name="CellBackground" type="Sprite2D" parent="."]
 position = Vector2(-384, 224)
@@ -84,13 +87,14 @@ target_door = NodePath("../Door")
 position = Vector2(560, 246)
 
 [node name="AnimatedSprite2D" parent="Pickup" index="0"]
+animation = &"bunny"
 mask = 1
 
 [node name="Door" parent="." instance=ExtResource("9_uacia")]
 position = Vector2(-152, 272)
 
-[node name="Katto" parent="." instance=ExtResource("1_74lek")]
-position = Vector2(-571, 280)
+[node name="Katto" parent="." instance=ExtResource("10_2os1m")]
+position = Vector2(-558, 282)
 
 [node name="Area2D" parent="." instance=ExtResource("11_2os1m")]
 position = Vector2(-624, 16)

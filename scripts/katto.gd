@@ -25,11 +25,20 @@ var THROW_POWER = 0
 var METAL_BOX_THROW_POWER = 0
 var METAL_BOX_THROW_POWER_MULTIPLIER = 20
 
-var GORILLA_SPRITESHEET = preload("res://arte/masks/masks_ss.png")
-var BUNNY_SPRITESHEET = preload("res://arte/masks/masks2.png")
+var GORILLA_SPRITESHEET = preload("res://arte/masks/mascara gorila.png")
+var BUNNY_SPRITESHEET = preload("res://arte/masks/mascara conejo.png")
+var OWL_SPRITESHEET = preload("res://arte/masks/mascara buho.png")
+
+var walk_animation = "walk"
+var idle_animation = "idle"
+
+var can_fly = false
+var is_locked = false
+var was_on_floor = false
+var last_picked_mask = Constants.Mask.NONE
 
 func handleMaskChange():
-	if (Global.mask_index != Constants.Mask.GORILLA and held_object is MetalBox) or (held_object != null and Global.mask_index == Constants.Mask.BUNNY):
+	if (Global.mask_index != Constants.Mask.GORILLA and held_object is MetalBox) or (held_object != null and (Global.mask_index == Constants.Mask.BUNNY or Global.mask_index == Constants.Mask.OWL)):
 		lay_down_object();
 
 	SPEED = 300.0
@@ -39,6 +48,7 @@ func handleMaskChange():
 	THROW_POWER = 100
 	METAL_BOX_THROW_POWER = 0
 	can_pick_metal_box = false;
+	can_fly = false
 	var sprite_sheet = null
 
 	if Global.mask_index == Constants.Mask.GORILLA:
@@ -49,17 +59,20 @@ func handleMaskChange():
 	if Global.mask_index == Constants.Mask.BUNNY:
 		JUMP_VELOCITY = JUMP_VELOCITY * 1.5
 		sprite_sheet = BUNNY_SPRITESHEET
+	if Global.mask_index == Constants.Mask.OWL:
+		sprite_sheet = OWL_SPRITESHEET
+		can_fly = true
 	if sprite_sheet != null:
 		mask_sprite.visible = true
 		mask_sprite.texture = sprite_sheet
 		mask_sprite.hframes = 7  # Change this to the number of columns in your masks_ss.png
 		mask_sprite.vframes = 1  # Change this to the number of rows
-		mask_sprite.frame = 0    # Which specific face do you want? (0 = First, 1 = Second...)
+		mask_sprite.frame = 2    # Which specific face do you want? (0 = First, 1 = Second...)
 	else:
 		mask_sprite.visible = false
 
 func _ready():
-	play_animation("idle")
+	play_animation(idle_animation)
 	handleMaskChange()
 
 func _process(delta):
@@ -86,29 +99,48 @@ func _physics_process(delta):
 
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
+		if velocity.y >= 0:
+			animation_lock = false
+			play_animation("fall")
+			animation_lock = true
+		else:
+			animation_lock = false
+			play_animation("jump")
+			animation_lock = true
+	elif !was_on_floor:
+		animation_lock = false
 
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and is_on_floor() and not is_locked:
 		velocity.y = JUMP_VELOCITY
 		jump_sound.play()
 
-	var is_crouching = false
-	if Input.is_action_pressed("Crouch") and is_on_floor():
-		is_crouching = true
-		collision_shape.scale.y = 0.5 
-	else:
-		collision_shape.scale.y = 1.0
-
 	var direction = Input.get_axis("Left", "Right")
-	
-	if direction:
+
+	mask_sprite.position.x = 0
+	mask_sprite.position.y = -14
+
+	if direction and not is_locked:
 		velocity.x = direction * SPEED
 		animated_sprite.flip_h = (direction < 0)
-		play_animation("walk")
-		#_play_animation(is_crouching, true)
+		mask_sprite.flip_h = (direction < 0)
+		if is_on_floor():
+			mask_sprite.position.x = 9 * sign(direction)
+			mask_sprite.frame = 2
+		else:
+			mask_sprite.position.x = 0
+			mask_sprite.frame = 0
+		play_animation(walk_animation)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		play_animation("idle")
-		#_play_animation(is_crouching, false)
+		mask_sprite.position.x = 0
+		mask_sprite.frame = 0
+		play_animation(idle_animation)
+
+	if walk_animation != "walk":
+		mask_sprite.position.y += 3
+		mask_sprite.position.x += 5 * sign(direction)
+
+	was_on_floor = is_on_floor()
 
 	move_and_slide()
 	
@@ -124,7 +156,7 @@ func _physics_process(delta):
 			collision.get_collider().apply_central_impulse(push_direction * PUSH_FORCE)
 
 func try_pickup():
-	if Global.mask_index == Constants.Mask.BUNNY:
+	if Global.mask_index == Constants.Mask.BUNNY or Global.mask_index == Constants.Mask.OWL:
 		return
 
 # 1. Check if the ray is actually hitting a Box
@@ -152,8 +184,10 @@ func try_pickup():
 
 			pick_box_sound.play()
 			play_animation("carry")
+			walk_animation = "walk_carry"
+			idle_animation = "idle_carry"
 			animation_lock = true
-			animated_sprite.animation_finished.connect(reset_idle_animation)
+			animated_sprite.animation_finished.connect(reset_idle_animation, CONNECT_ONE_SHOT)
 
 func lay_down_object():
 	if held_object != null:
@@ -172,12 +206,15 @@ func lay_down_object():
 			# on different Collision Layers as mentioned before, which is cleaner than 
 			# toggling shapes.
 
-			var dir = Vector2(sign(pickup_ray.target_position.x), -0.5).normalized()
+		var dir = Vector2(sign(pickup_ray.target_position.x), -1).normalized()
 
-			if box is MetalBox:
-				box.apply_central_impulse(dir * METAL_BOX_THROW_POWER)
-			else:
-				box.apply_central_impulse(dir * THROW_POWER)
+		if box is MetalBox:
+			box.apply_central_impulse(dir * METAL_BOX_THROW_POWER * 5)
+		else:
+			box.apply_central_impulse(dir * THROW_POWER * 5)
+
+		walk_animation = "walk"
+		idle_animation = "idle"
 
 		throw_box_sound.play()
 
@@ -211,9 +248,15 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		body.apply_central_impulse(force)
 
 func play_animation(animation):
-	if not animation_lock:
+	if not animation_lock and not is_locked:
 		animated_sprite.play(animation);
 
 func reset_idle_animation():
 	animation_lock = false
-	play_animation("idle")
+	play_animation(idle_animation)
+
+func finish_mask_animation():
+	animation_lock = false
+	is_locked = false
+	Global.mask_index = last_picked_mask
+	handleMaskChange()

@@ -60,3 +60,17 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		parent.visible = false
 		parent.set_deferred("disabled", true)
 		pickup_sound.play()
+
+		body.animation_lock = false
+
+		if mask == Constants.Mask.GORILLA:
+			body.play_animation("pickup_mask_gorilla")
+		elif mask == Constants.Mask.BUNNY:
+			body.play_animation("pickup_mask_bunny")
+		elif mask == Constants.Mask.OWL:
+			body.play_animation("pickup_mask_owl")
+
+		body.animation_lock = true
+		body.is_locked = true
+		body.last_picked_mask = mask
+		body.animated_sprite.animation_finished.connect(body.finish_mask_animation, CONNECT_ONE_SHOT)

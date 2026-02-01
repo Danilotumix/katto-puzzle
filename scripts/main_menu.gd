@@ -51,6 +51,7 @@ func _on_boton_mouse_exited(btn):
 	create_tween().tween_property(btn, "modulate", Color(1, 1, 1, 1), 0.1)
 
 func _on_play_pressed():
+	BackgroundMusic.play()
 	get_tree().change_scene_to_file("res://scenes/level_1.tscn")
 
 func _on_credits_pressed():

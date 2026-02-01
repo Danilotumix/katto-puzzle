@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://dafjlljh1c1kd"]
+[gd_scene load_steps=89 format=3 uid="uid://dafjlljh1c1kd"]
 
 [ext_resource type="Script" uid="uid://c4uunl0dc5rkh" path="res://scripts/katto.gd" id="1_ui8ui"]
 [ext_resource type="Texture2D" uid="uid://cfr3bs3eew6gs" path="res://arte/player/gatocarriyngbox.png" id="2_xko5r"]
@@ -9,14 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://c5qcnyj0h5dlt" path="res://arte/player/gatosligdingbox.png" id="3_xko5r"]
 [ext_resource type="AudioStream" uid="uid://v6dw503cnq0j" path="res://audio/sfx/AGARRAR OBJETO.mp3" id="4_0dncy"]
 [ext_resource type="Texture2D" uid="uid://ckx54m4o6rk4b" path="res://arte/player/gato gorila mask.png" id="4_o7ll2"]
-[ext_resource type="Texture2D" uid="uid://b1rgyjnjv1fuw" path="res://arte/player/gatoidlebox-Sheet.png" id="5_fbnmq"]
 [ext_resource type="AudioStream" uid="uid://ddwix65qe6fqh" path="res://audio/sfx/LANZAR OBJETO.mp3" id="5_hldc1"]
 [ext_resource type="Texture2D" uid="uid://qjw4wrukoxiv" path="res://arte/player/gatojump1.png" id="5_jxl3n"]
 [ext_resource type="Texture2D" uid="uid://bft8ygyqi1bw7" path="res://arte/player/gato bunny mask.png" id="6_mvply"]
 [ext_resource type="Texture2D" uid="uid://bi802kpipkdc0" path="res://arte/player/gatocarriyngboxwalk.png" id="8_jxl3n"]
 [ext_resource type="Texture2D" uid="uid://k3xx0dhghgde" path="res://arte/player/gato rowlet mask.png" id="8_nxixr"]
-[ext_resource type="Texture2D" uid="uid://cjayateu4el7q" path="res://arte/player/gatothrowingbox.png" id="11_lu8y5"]
-[ext_resource type="Texture2D" uid="uid://cykqq54mtg3tn" path="res://arte/masks/mascara gorila.png" id="12_nxixr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t3te6"]
 atlas = ExtResource("2_xko5r")
@@ -48,22 +45,6 @@ region = Rect2(192, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hldc1"]
 atlas = ExtResource("3_l8r7d")
-region = Rect2(288, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_76st5"]
-atlas = ExtResource("5_fbnmq")
-region = Rect2(0, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uxa8k"]
-atlas = ExtResource("5_fbnmq")
-region = Rect2(96, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tvuj2"]
-atlas = ExtResource("5_fbnmq")
-region = Rect2(192, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s8qet"]
-atlas = ExtResource("5_fbnmq")
 region = Rect2(288, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cg07i"]
@@ -254,22 +235,6 @@ region = Rect2(576, 0, 96, 96)
 atlas = ExtResource("3_xko5r")
 region = Rect2(672, 0, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fk62v"]
-atlas = ExtResource("11_lu8y5")
-region = Rect2(0, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x6jb6"]
-atlas = ExtResource("11_lu8y5")
-region = Rect2(96, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5whaj"]
-atlas = ExtResource("11_lu8y5")
-region = Rect2(192, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wuq31"]
-atlas = ExtResource("11_lu8y5")
-region = Rect2(288, 0, 96, 96)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_xko5r"]
 atlas = ExtResource("3_hldc1")
 region = Rect2(0, 0, 96, 96)
@@ -380,32 +345,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_76st5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uxa8k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tvuj2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s8qet")
-}],
-"loop": true,
-"name": &"idle_carry",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": ExtResource("5_jxl3n")
 }],
 "loop": true,
 "name": &"jump",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"jump_carry",
 "speed": 5.0
 }, {
 "frames": [{
@@ -571,23 +514,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fk62v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x6jb6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5whaj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wuq31")
-}],
-"loop": false,
-"name": &"throw",
-"speed": 20.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_xko5r")
 }, {
 "duration": 1.0,
@@ -660,11 +586,10 @@ collision_shape = NodePath("CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xko5r")
-animation = &"push"
+animation = &"pickup_mask_bunny"
 
 [node name="MaskSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -14)
-texture = ExtResource("12_nxixr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
