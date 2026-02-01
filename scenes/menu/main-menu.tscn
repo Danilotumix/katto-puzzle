@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5ydxmtwic3t8"]
+
+[ext_resource type="Script" uid="uid://3wgv3nggv8cu" path="res://scripts/main_menu.gd" id="1_rt666"]
+[ext_resource type="Script" uid="uid://d0prl6s856agn" path="res://scenes/menu/sound_container.gd" id="2_3c4va"]
+[ext_resource type="AudioStream" uid="uid://cxs40ye0xlvjw" path="res://audio/MENU MUSIC MASTER.mp3" id="2_w1rq1"]
+[ext_resource type="FontFile" uid="uid://7c78jtuvip6l" path="res://joystix monospace.otf" id="3_3c4va"]
+[ext_resource type="Texture2D" uid="uid://dt8lygawaxv8f" path="res://arte/buttons/boton audio.png" id="3_c2fbw"]
+[ext_resource type="Texture2D" uid="uid://cedwov83rmjr3" path="res://arte/buttons/boton audion't.png" id="4_w7e7o"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rt666")
+
+[node name="MarginContainer" type="MarginContainer" parent="." node_paths=PackedStringArray("audio_player", "music_button")]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 64.0
+offset_bottom = 56.0
+scale = Vector2(0.6351966, 0.62347746)
+script = ExtResource("2_3c4va")
+audio_player = NodePath("../AudioStreamPlayer2D")
+music_button = NodePath("HBoxContainer/VBoxContainer/Button")
+icon_music_on = ExtResource("3_c2fbw")
+icon_music_off = ExtResource("4_w7e7o")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("3_c2fbw")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_w1rq1")
+autoplay = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 450.0
+offset_right = 851.0
+offset_bottom = 713.0
+
+[node name="play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_3c4va")
+theme_override_font_sizes/font_size = 50
+text = "PLAY"
+
+[node name="credits" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_3c4va")
+theme_override_font_sizes/font_size = 30
+text = "CREDITS"
+
+[node name="quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_3c4va")
+theme_override_font_sizes/font_size = 30
+text = "QUIT"
+
+[connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
