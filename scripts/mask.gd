@@ -12,7 +12,10 @@ var is_playing_forward = true
 
 func _ready():
 	animation_finished.connect(_on_animation_finished)
-	play("default")
+	if mask == Constants.Mask.GORILLA:
+		play("gorilla")
+	elif mask == Constants.Mask.BUNNY:
+		play("bunny")
 
 func _on_animation_finished():
 	# 1. Flip the horizontal state (True becomes False, False becomes True)

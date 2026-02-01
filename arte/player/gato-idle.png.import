@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx4h8q85jha1e"
-path="res://.godot/imported/masks.png-5c85006d993c03ab83280f62613ac8d3.ctex"
+uid="uid://bbg67i5jt8gh2"
+path="res://.godot/imported/gato-idle.png-bb8a93dc3b49bab5bc1503132ff9cfd7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://arte/masks/masks.png"
-dest_files=["res://.godot/imported/masks.png-5c85006d993c03ab83280f62613ac8d3.ctex"]
+source_file="res://arte/player/gato-idle.png"
+dest_files=["res://.godot/imported/gato-idle.png-bb8a93dc3b49bab5bc1503132ff9cfd7.ctex"]
 
 [params]
 

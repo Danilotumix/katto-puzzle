@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lnwgvtlcy45m"
-path="res://.godot/imported/PuertaAbierta.PNG-e39d5ec3bf14db2d8ca1e5a0fd34c83c.ctex"
+uid="uid://b60oc0kupm8og"
+path="res://.godot/imported/masks3.png-1f555907f0123167f090badbe4e8ec1d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://arte/mechanisms/PuertaAbierta.PNG"
-dest_files=["res://.godot/imported/PuertaAbierta.PNG-e39d5ec3bf14db2d8ca1e5a0fd34c83c.ctex"]
+source_file="res://arte/masks/masks3.png"
+dest_files=["res://.godot/imported/masks3.png-1f555907f0123167f090badbe4e8ec1d.ctex"]
 
 [params]
 

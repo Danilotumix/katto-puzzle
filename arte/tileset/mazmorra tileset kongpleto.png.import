@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lnwgvtlcy45m"
-path="res://.godot/imported/PuertaAbierta.PNG-e39d5ec3bf14db2d8ca1e5a0fd34c83c.ctex"
+uid="uid://dmylcbpsg82lf"
+path="res://.godot/imported/mazmorra tileset kongpleto.png-7811ebfbf6b4f998a6785305ab77e8d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://arte/mechanisms/PuertaAbierta.PNG"
-dest_files=["res://.godot/imported/PuertaAbierta.PNG-e39d5ec3bf14db2d8ca1e5a0fd34c83c.ctex"]
+source_file="res://arte/tileset/mazmorra tileset kongpleto.png"
+dest_files=["res://.godot/imported/mazmorra tileset kongpleto.png-7811ebfbf6b4f998a6785305ab77e8d8.ctex"]
 
 [params]
 

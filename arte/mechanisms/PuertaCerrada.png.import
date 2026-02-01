@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bks2t1qlcsf3q"
-path="res://.godot/imported/PuertaCerrada.png-88610878b2dac1977a42092f72b70db1.ctex"
+uid="uid://c5qa6tj77b82a"
+path="res://.godot/imported/PuertaCerrada.PNG-195fb32fa8fbfec7c91f2e35ae2548e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://arte/mechanisms/PuertaCerrada.png"
-dest_files=["res://.godot/imported/PuertaCerrada.png-88610878b2dac1977a42092f72b70db1.ctex"]
+source_file="res://arte/mechanisms/PuertaCerrada.PNG"
+dest_files=["res://.godot/imported/PuertaCerrada.PNG-195fb32fa8fbfec7c91f2e35ae2548e8.ctex"]
 
 [params]
 
