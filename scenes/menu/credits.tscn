@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4da2c0melis5"]
+[gd_scene load_steps=5 format=3 uid="uid://d4da2c0melis5"]
 
 [ext_resource type="Texture2D" uid="uid://ciqygc5fsf5iu" path="res://arte/background/credits.png" id="1_0l22u"]
-[ext_resource type="Texture2D" uid="uid://b0n0aax35hova" path="res://arte/background/ConceptA3.png" id="1_ff4am"]
+[ext_resource type="Script" uid="uid://bjj8elv8g5xu6" path="res://scripts/credits.gd" id="1_drpar"]
+[ext_resource type="Texture2D" uid="uid://cmsqbkn17vvg" path="res://arte/background/ConceptA3.png" id="1_ff4am"]
+[ext_resource type="Texture2D" uid="uid://bpykphh83wxyq" path="res://arte/buttons/back.png" id="4_0s65u"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -10,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_drpar")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 0
@@ -24,3 +27,14 @@ offset_right = 1901.0
 offset_bottom = 1165.0
 scale = Vector2(0.67332464, 0.61801434)
 texture = ExtResource("1_ff4am")
+
+[node name="BackButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1128.0
+offset_top = 584.0
+offset_right = 1224.0
+offset_bottom = 680.0
+scale = Vector2(0.823212, 0.8356088)
+texture_normal = ExtResource("4_0s65u")
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

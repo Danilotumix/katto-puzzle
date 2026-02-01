@@ -1,24 +1,18 @@
 extends Control
 
-@onready var container = $VBoxContainer
+@onready var boton_volver = $BackButton
 
 func _ready():
+	boton_volver.mouse_entered.connect(_on_boton_mouse_entered)
+	boton_volver.mouse_exited.connect(_on_boton_mouse_exited)
 	
-	container.position.y = get_viewport_rect().size.y
-	
-	var final_y = -container.get_combined_minimum_size().y
-	
-	
-	var tween = create_tween()
-	
-	tween.tween_property(container, "position:y", final_y, 10.0).set_trans(Tween.TRANS_LINEAR)
-	
-	
-	tween.finished.connect(_on_credits_finished)
+	boton_volver.modulate.a = 0
+	create_tween().tween_property(boton_volver, "modulate:a", 1.0, 0.5)
 
-func _on_credits_finished():
-	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
+func _on_back_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/menu/main-menu.tscn")
 
-func _input(event):
-	if event is InputEventMouseButton and event.pressed:
-		_on_credits_finished()
+func _on_boton_mouse_entered():
+	create_tween().tween_property(boton_volver, "modulate", Color(1.5, 1.5, 1.5, 1.0), 0.1)
+func _on_boton_mouse_exited():
+	create_tween().tween_property(boton_volver, "modulate", Color(1, 1, 1, 1), 0.1)
