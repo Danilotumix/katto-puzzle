@@ -48,3 +48,7 @@ offset_right = 1024.0
 offset_bottom = 592.0
 scale = Vector2(0.66620857, 0.667086)
 texture_normal = ExtResource("5_ode61")
+
+[connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
