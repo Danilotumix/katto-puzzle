@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=4 uid="uid://bqtnpx1agx5no"]
+[gd_scene load_steps=13 format=4 uid="uid://d3tvn22q4jtrj"]
 
-[ext_resource type="PackedScene" uid="uid://dafjlljh1c1kd" path="res://scenes/katto.tscn" id="1_74lek"]
+[ext_resource type="PackedScene" uid="uid://j7oc05tnqw8x" path="res://scenes/katto.tscn" id="1_74lek"]
 [ext_resource type="Texture2D" uid="uid://b0n0aax35hova" path="res://arte/background/ConceptA3.png" id="1_j5jx5"]
-[ext_resource type="Script" uid="uid://dj8flvrrcpl1m" path="res://scripts/game.gd" id="1_lpvoh"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_lpvoh"]
 [ext_resource type="PackedScene" uid="uid://d08a0kv0isn00" path="res://scenes/box.tscn" id="3_74lek"]
 [ext_resource type="Texture2D" uid="uid://kuhbw1fkl0ry" path="res://arte/background/Small dungeon.png" id="3_yk7ts"]
 [ext_resource type="PackedScene" uid="uid://q1jygg0ka2n" path="res://scenes/metal_box.tscn" id="4_j5jx5"]

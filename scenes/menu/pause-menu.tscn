@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://b16j1fahe6oxy"]
+
+[ext_resource type="Script" uid="uid://dljsbn2biapx8" path="res://scripts/pause_menu.gd" id="1_bjxdr"]
+[ext_resource type="Texture2D" uid="uid://dbiwh76e5gu6b" path="res://arte/buttons/title-PAUSE.png" id="2_7qpd6"]
+[ext_resource type="Texture2D" uid="uid://fjy4vro1gwrs" path="res://arte/buttons/RESUME.png" id="3_471dq"]
+[ext_resource type="Texture2D" uid="uid://wk7nw6uam7sh" path="res://arte/buttons/RESTART.png" id="4_y2wik"]
+[ext_resource type="Texture2D" uid="uid://dy8rpskcsr5ey" path="res://arte/buttons/QUIT.png" id="5_ode61"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_bjxdr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 1.5258789e-05
+offset_top = 1.5258789e-05
+offset_right = 40.000015
+offset_bottom = 40.000015
+scale = Vector2(31.999466, 17.999311)
+color = Color(0, 0, 0, 0.34509805)
+
+[node name="PauseTitle" type="TextureRect" parent="."]
+offset_left = 352.0
+offset_top = 208.0
+offset_right = 928.0
+offset_bottom = 304.0
+texture = ExtResource("2_7qpd6")
+
+[node name="ResumeButton" type="TextureButton" parent="."]
+offset_left = 448.0
+offset_top = 336.0
+offset_right = 1024.0
+offset_bottom = 432.0
+scale = Vector2(0.66634, 0.6687543)
+texture_normal = ExtResource("3_471dq")
+
+[node name="RestartButton" type="TextureButton" parent="."]
+offset_left = 448.00003
+offset_top = 416.0
+offset_right = 1024.0
+offset_bottom = 512.0
+scale = Vector2(0.66733783, 0.66569746)
+texture_normal = ExtResource("4_y2wik")
+
+[node name="QuitButton" type="TextureButton" parent="."]
+offset_left = 448.0
+offset_top = 496.0
+offset_right = 1024.0
+offset_bottom = 592.0
+scale = Vector2(0.66620857, 0.667086)
+texture_normal = ExtResource("5_ode61")

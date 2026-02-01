@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dt8lygawaxv8f"
-path="res://.godot/imported/boton audio.png-cd79ffcade4efe9bd978c1a597162863.ctex"
+uid="uid://wk7nw6uam7sh"
+path="res://.godot/imported/RESTART.png-53df5c853e2ae4ebbbb6400a020e8d1b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://arte/buttons/boton audio.png"
-dest_files=["res://.godot/imported/boton audio.png-cd79ffcade4efe9bd978c1a597162863.ctex"]
+source_file="res://arte/buttons/RESTART.png"
+dest_files=["res://.godot/imported/RESTART.png-53df5c853e2ae4ebbbb6400a020e8d1b.ctex"]
 
 [params]
 

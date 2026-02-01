@@ -2,6 +2,7 @@ extends Node
 
 @onready var maskLabel = $Label
 @onready var player = $Katto
+@onready var pause_menu = $PauseMenu
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
