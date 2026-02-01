@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://daiquvvkbex6k"
+path="res://.godot/imported/PUERTA ABRIR.mp3-d9bc52aff1291f50a3ff85c5e2502f2f.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/PUERTA ABRIR.mp3"
+dest_files=["res://.godot/imported/PUERTA ABRIR.mp3-d9bc52aff1291f50a3ff85c5e2502f2f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

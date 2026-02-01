@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://57xa5abn64rw"
+path="res://.godot/imported/MUSICA JUEGO LGJ.mp3-cc3b4b68cbaaa410e3825f0d0a416c27.mp3str"
+
+[deps]
+
+source_file="res://audio/MUSICA JUEGO LGJ.mp3"
+dest_files=["res://.godot/imported/MUSICA JUEGO LGJ.mp3-cc3b4b68cbaaa410e3825f0d0a416c27.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

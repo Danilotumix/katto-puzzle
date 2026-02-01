@@ -7,6 +7,7 @@ extends AnimatedSprite2D
 
 # We need to remember where we started so we don't drift away
 @onready var start_y = position.y
+@onready var pickup_sound = $"../PickupSound"
 
 var is_playing_forward = true
 
@@ -53,8 +54,9 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Katto":
-		if not body.masks.has(mask):
-			body.masks.append(mask)
+		if not Global.masks.has(mask):
+			Global.masks.append(mask)
 		var parent = get_parent()
 		parent.visible = false
 		parent.set_deferred("disabled", true)
+		pickup_sound.play()

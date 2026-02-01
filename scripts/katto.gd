@@ -8,12 +8,14 @@ extends CharacterBody2D
 @onready var hold_position = $BoxMarker
 @onready var pickup_ray = $PickupRay
 @onready var head_collision = $Area2D
+@onready var jump_sound = $JumpSound
+@onready var pick_box_sound = $PickBoxSound
+@onready var throw_box_sound = $ThrowBoxSound
+@onready var drag_box_sound = $DragBoxSound
 
-var mask_index: int = Constants.Mask.NONE
 var held_object: RigidBody2D = null
 var can_pick_metal_box = false
-
-var masks = [mask_index]
+var animation_lock = false
 
 var SPEED = 0
 var JUMP_VELOCITY = 0
@@ -24,8 +26,12 @@ var METAL_BOX_THROW_POWER = 0
 var METAL_BOX_THROW_POWER_MULTIPLIER = 20
 
 var GORILLA_SPRITESHEET = preload("res://arte/masks/masks_ss.png")
+var BUNNY_SPRITESHEET = preload("res://arte/masks/masks2.png")
 
 func handleMaskChange():
+	if (Global.mask_index != Constants.Mask.GORILLA and held_object is MetalBox) or (held_object != null and Global.mask_index == Constants.Mask.BUNNY):
+		lay_down_object();
+
 	SPEED = 300.0
 	JUMP_VELOCITY = -500.0
 	GRAVITY = 1200
@@ -34,13 +40,15 @@ func handleMaskChange():
 	METAL_BOX_THROW_POWER = 0
 	can_pick_metal_box = false;
 	var sprite_sheet = null
-	if mask_index == Constants.Mask.GORILLA:
+
+	if Global.mask_index == Constants.Mask.GORILLA:
 		PUSH_FORCE = PUSH_FORCE * 5
 		METAL_BOX_THROW_POWER = THROW_POWER * METAL_BOX_THROW_POWER_MULTIPLIER
 		sprite_sheet = GORILLA_SPRITESHEET
 		can_pick_metal_box = true
-	if mask_index == Constants.Mask.BUNNY:
+	if Global.mask_index == Constants.Mask.BUNNY:
 		JUMP_VELOCITY = JUMP_VELOCITY * 1.5
+		sprite_sheet = BUNNY_SPRITESHEET
 	if sprite_sheet != null:
 		mask_sprite.visible = true
 		mask_sprite.texture = sprite_sheet
@@ -51,16 +59,16 @@ func handleMaskChange():
 		mask_sprite.visible = false
 
 func _ready():
-	animated_sprite.play("default")
+	play_animation("idle")
 	handleMaskChange()
 
 func _process(delta):
 	if Input.is_action_just_pressed("ChangeMask"):
 		while true:
-			mask_index = mask_index + 1
-			if mask_index > Constants.Mask.size() - 1:
-				mask_index = 0
-			if masks.has(mask_index):
+			Global.mask_index = Global.mask_index + 1
+			if Global.mask_index > Constants.Mask.size() - 1:
+				Global.mask_index = 0
+			if Global.masks.has(Global.mask_index):
 				break;
 		handleMaskChange()
 	if Input.is_action_just_pressed("Pickup"):
@@ -81,6 +89,7 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		jump_sound.play()
 
 	var is_crouching = false
 	if Input.is_action_pressed("Crouch") and is_on_floor():
@@ -94,9 +103,11 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction * SPEED
 		animated_sprite.flip_h = (direction < 0)
+		play_animation("walk")
 		#_play_animation(is_crouching, true)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		play_animation("idle")
 		#_play_animation(is_crouching, false)
 
 	move_and_slide()
@@ -113,6 +124,9 @@ func _physics_process(delta):
 			collision.get_collider().apply_central_impulse(push_direction * PUSH_FORCE)
 
 func try_pickup():
+	if Global.mask_index == Constants.Mask.BUNNY:
+		return
+
 # 1. Check if the ray is actually hitting a Box
 	if pickup_ray.is_colliding():
 		var body = pickup_ray.get_collider()
@@ -134,7 +148,12 @@ func try_pickup():
 			# reparent(new_parent, keep_global_transform)
 			held_object.reparent(hold_position)
 			held_object.position = Vector2.ZERO # Snap to center of marker
-			held_object.rotation = 0            # Reset rotation	pass
+			held_object.rotation = 0            # Reset rotation
+
+			pick_box_sound.play()
+			play_animation("carry")
+			animation_lock = true
+			animated_sprite.animation_finished.connect(reset_idle_animation)
 
 func lay_down_object():
 	if held_object != null:
@@ -159,6 +178,8 @@ func lay_down_object():
 				box.apply_central_impulse(dir * METAL_BOX_THROW_POWER)
 			else:
 				box.apply_central_impulse(dir * THROW_POWER)
+
+		throw_box_sound.play()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Box or body is MetalBox:
@@ -188,3 +209,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			force = Vector2(0, -1 * THROW_POWER * 5)
 
 		body.apply_central_impulse(force)
+
+func play_animation(animation):
+	if not animation_lock:
+		animated_sprite.play(animation);
+
+func reset_idle_animation():
+	animation_lock = false
+	play_animation("idle")

@@ -6,6 +6,7 @@ signal button_state_changed(is_pressed: bool)
 @onready var button_base = $StaticBody2D
 @onready var sprite = $Sprite2D
 @onready var area = $Area2D
+@onready var switch_sound = $SwitchSound
 
 var image_up = preload("res://arte/mechanisms/Boton.png")
 var image_down = preload("res://arte/mechanisms/BotonPresionado.png")
@@ -39,3 +40,5 @@ func _on_body_changed(_body):
 		sprite.texture = image_up
 		button_state_changed.emit(false)
 		target_door.close()
+
+	switch_sound.play()

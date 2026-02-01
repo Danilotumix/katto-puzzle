@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d06e1nu1f76bt"
+path="res://.godot/imported/JUMP 1.mp3-779f5c9e698d34fd3c912247c71cb7f4.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/JUMP 1.mp3"
+dest_files=["res://.godot/imported/JUMP 1.mp3-779f5c9e698d34fd3c912247c71cb7f4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

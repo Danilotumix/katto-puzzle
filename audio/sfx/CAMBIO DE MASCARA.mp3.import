@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ubg6d0rbpld3"
+path="res://.godot/imported/CAMBIO DE MASCARA.mp3-db290f9ead8a7e3f7cd90a5b6c3b75dd.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/CAMBIO DE MASCARA.mp3"
+dest_files=["res://.godot/imported/CAMBIO DE MASCARA.mp3-db290f9ead8a7e3f7cd90a5b6c3b75dd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

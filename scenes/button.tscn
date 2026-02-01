@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://rbc4vvi0igh5"]
+[gd_scene load_steps=5 format=3 uid="uid://rbc4vvi0igh5"]
 
 [ext_resource type="Script" uid="uid://7e4olfnfec55" path="res://scripts/button.gd" id="1_rhj8v"]
 [ext_resource type="Texture2D" uid="uid://ci6j1fb72idcq" path="res://arte/mechanisms/BotonPresionado.PNG" id="2_rhj8v"]
+[ext_resource type="AudioStream" uid="uid://bwpmr5regkeh" path="res://audio/sfx/SWITCH BOTON.mp3" id="3_3q610"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7y4x"]
 size = Vector2(48, 5)
@@ -22,3 +23,7 @@ shape = SubResource("RectangleShape2D_i7y4x")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(-27, 4, -22, 1, -19, 0, 19, 0, 22, 1, 27, 4)
+
+[node name="SwitchSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3q610")
+volume_db = 6.0

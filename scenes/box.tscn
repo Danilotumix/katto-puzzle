@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d08a0kv0isn00"]
+[gd_scene load_steps=5 format=3 uid="uid://d08a0kv0isn00"]
 
 [ext_resource type="Texture2D" uid="uid://cxolhsllrnhyg" path="res://arte/mechanisms/Caja.png" id="1_3inec"]
 [ext_resource type="Script" uid="uid://cdsevsku7tsbb" path="res://scripts/box.gd" id="1_ks2v0"]
+[ext_resource type="AudioStream" uid="uid://bs5ijukwpcrk1" path="res://audio/sfx/ARRASTRAR OBJETO LOOP 2.mp3" id="3_c2ln5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ks2v0"]
 radius = 9.0
@@ -37,3 +38,8 @@ shape = SubResource("CapsuleShape2D_ks2v0")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 24)
+
+[node name="DragBoxSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_c2ln5")
+volume_db = 24.0
+parameters/looping = true

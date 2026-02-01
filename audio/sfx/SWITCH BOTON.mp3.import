@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bwpmr5regkeh"
+path="res://.godot/imported/SWITCH BOTON.mp3-2b6e8409952bc1a4251fd0eeeb7c351f.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/SWITCH BOTON.mp3"
+dest_files=["res://.godot/imported/SWITCH BOTON.mp3-2b6e8409952bc1a4251fd0eeeb7c351f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

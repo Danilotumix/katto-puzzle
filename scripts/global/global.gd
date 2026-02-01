@@ -1,7 +1,8 @@
 extends Node
 
-@onready var maskLabel = $Label
-@onready var pause_menu = $PauseMenu
+var mask_index: int = Constants.Mask.NONE
+#var masks = [mask_index]
+var masks = [mask_index, Constants.Mask.GORILLA]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,4 +10,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	maskLabel.text = Constants.Mask.keys()[Global.mask_index]
+	pass

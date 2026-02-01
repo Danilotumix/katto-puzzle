@@ -1,12 +1,17 @@
-extends Node
+extends Area2D
 
-@onready var maskLabel = $Label
-@onready var pause_menu = $PauseMenu
+@export var level_scene : String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	maskLabel.text = Constants.Mask.keys()[Global.mask_index]
+	pass
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.name == "Katto":
+		get_tree().change_scene_to_file(level_scene)
