@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bu7yljby1m7hw"
+path="res://.godot/imported/CREDITOS LGJ.mp3-337844e8e6efc01de82cc3810d484ba2.mp3str"
+
+[deps]
+
+source_file="res://audio/CREDITOS LGJ.mp3"
+dest_files=["res://.godot/imported/CREDITOS LGJ.mp3-337844e8e6efc01de82cc3810d484ba2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

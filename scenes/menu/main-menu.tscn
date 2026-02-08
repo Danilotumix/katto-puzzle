@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://3wgv3nggv8cu" path="res://scripts/main_menu.gd" id="1_rt666"]
 [ext_resource type="Script" uid="uid://d0prl6s856agn" path="res://scripts/sound_container.gd" id="2_3c4va"]
 [ext_resource type="AudioStream" uid="uid://cxs40ye0xlvjw" path="res://audio/MENU MUSIC MASTER.mp3" id="2_w1rq1"]
-[ext_resource type="Texture2D" uid="uid://b0n0aax35hova" path="res://arte/background/ConceptA3.png" id="2_w7e7o"]
+[ext_resource type="Texture2D" uid="uid://cmsqbkn17vvg" path="res://arte/background/ConceptA3.png" id="2_w7e7o"]
 [ext_resource type="Texture2D" uid="uid://cdf6rsy0rgohe" path="res://arte/buttons/katto_puzzle_logo.png" id="3_105jj"]
 [ext_resource type="Texture2D" uid="uid://dfswrrfvt8vms" path="res://arte/buttons/volume.png" id="3_c2fbw"]
 [ext_resource type="Texture2D" uid="uid://b1nxgb6inj2xq" path="res://arte/buttons/katto puzzle logo-Recovered1.png" id="4_nufpn"]
@@ -67,10 +67,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rt666")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 1901.0
-offset_bottom = 1165.0
+offset_left = -639.99994
+offset_top = -359.99997
+offset_right = 1261.0
+offset_bottom = 805.0
 scale = Vector2(0.67332464, 0.61801434)
 texture = ExtResource("2_w7e7o")
 
@@ -85,17 +89,17 @@ scale = Vector2(0.6496953, 0.38852158)
 texture = ExtResource("3_105jj")
 
 [node name="TituloA" type="AnimatedSprite2D" parent="."]
-position = Vector2(628, 305.98)
+position = Vector2(-12, -67.01999)
 scale = Vector2(0.63125, 0.3945)
 sprite_frames = SubResource("SpriteFrames_1uad4")
 frame_progress = 0.49023315
 
 [node name="MarginContainer" type="MarginContainer" parent="." node_paths=PackedStringArray("audio_player", "music_button")]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 16.0
-offset_right = 64.0
-offset_bottom = 56.0
+offset_left = -615.99994
+offset_top = -343.99997
+offset_right = -511.99994
+offset_bottom = -239.99997
 scale = Vector2(0.6351966, 0.62347746)
 script = ExtResource("2_3c4va")
 audio_player = NodePath("../AudioStreamPlayer2D")
@@ -114,32 +118,36 @@ layout_mode = 2
 icon = ExtResource("3_c2fbw")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-640, -360)
 stream = ExtResource("2_w1rq1")
+volume_db = -2.0
 autoplay = true
 
 [node name="PlayButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 432.0
-offset_top = 448.0
-offset_right = 1008.0
-offset_bottom = 544.0
+offset_left = -207.99991
+offset_top = 75.0
+offset_right = 368.0001
+offset_bottom = 171.0
 scale = Vector2(0.66566855, 0.81026405)
 texture_normal = ExtResource("15_nufpn")
 
 [node name="CreditButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 432.0
-offset_top = 536.00006
-offset_right = 1008.0
-offset_bottom = 632.00006
+offset_left = -208.0
+offset_top = 163.00009
+offset_right = 368.0
+offset_bottom = 259.0001
 scale = Vector2(0.66547495, 0.56898576)
 texture_normal = ExtResource("16_xke5c")
 
 [node name="QuitButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 432.0
-offset_top = 600.0
-offset_right = 1008.0
-offset_bottom = 696.0
+offset_left = -207.99991
+offset_top = 227.00003
+offset_right = 368.0001
+offset_bottom = 323.00003
 scale = Vector2(0.6652976, 0.569462)
 texture_normal = ExtResource("17_6k3t4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

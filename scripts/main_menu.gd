@@ -52,6 +52,8 @@ func _on_boton_mouse_exited(btn):
 
 func _on_play_pressed():
 	BackgroundMusic.play()
+	Global.mask_index = Constants.Mask.NONE
+	Global.masks = [Global.mask_index]
 	get_tree().change_scene_to_file("res://scenes/level_1.tscn")
 
 func _on_credits_pressed():

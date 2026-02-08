@@ -138,12 +138,13 @@ func _physics_process(delta):
 		velocity.x = direction * SPEED
 		animated_sprite.flip_h = (direction < 0)
 		mask_sprite.flip_h = (direction < 0)
-		if is_on_floor():
-			mask_sprite.position.x = 9 * sign(direction)
-			mask_sprite.frame = 2
-		else:
-			mask_sprite.position.x = 0
-			mask_sprite.frame = 0
+		if mask_sprite.visible:
+			if is_on_floor():
+				mask_sprite.position.x = 9 * sign(direction)
+				mask_sprite.frame = 2
+			else:
+				mask_sprite.position.x = 0
+				mask_sprite.frame = 0
 		play_animation(walk_animation)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)

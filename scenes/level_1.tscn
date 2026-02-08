@@ -24,6 +24,7 @@ texture = ExtResource("6_2y5yt")
 1:2/0 = 0
 1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 3:2/0 = 0
 3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 5:2/0 = 0
@@ -102,12 +103,13 @@ position = Vector2(-558, 282)
 position = Vector2(-624, 16)
 level_scene = "res://scenes/level_2.tscn"
 
+[node name="HelpScroll" parent="." instance=ExtResource("15_7nomh")]
+position = Vector2(428, -125)
+
 [node name="CellBackground2" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(-384, 224)
 texture = ExtResource("13_6dial")
-
-[node name="HelpScroll" parent="." instance=ExtResource("15_7nomh")]
-position = Vector2(474, -186)
 
 [node name="PauseMenu" parent="." instance=ExtResource("2_go7sj")]
 visible = false

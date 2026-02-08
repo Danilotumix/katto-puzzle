@@ -3,9 +3,9 @@ extends Control
 @onready var boton_volver = $BackButton
 
 func _ready():
+	BackgroundMusic.stop()
 	boton_volver.mouse_entered.connect(_on_boton_mouse_entered)
 	boton_volver.mouse_exited.connect(_on_boton_mouse_exited)
-	
 	boton_volver.modulate.a = 0
 	create_tween().tween_property(boton_volver, "modulate:a", 1.0, 0.5)
 

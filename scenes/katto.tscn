@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=3 uid="uid://dafjlljh1c1kd"]
+[gd_scene load_steps=120 format=3 uid="uid://dafjlljh1c1kd"]
 
 [ext_resource type="Script" uid="uid://c4uunl0dc5rkh" path="res://scripts/katto.gd" id="1_ui8ui"]
 [ext_resource type="Texture2D" uid="uid://coeh1umq5lwfo" path="res://arte/player/gatowings.png" id="2_3dhs6"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://k3xx0dhghgde" path="res://arte/player/gato rowlet mask.png" id="8_nxixr"]
 [ext_resource type="Texture2D" uid="uid://cjayateu4el7q" path="res://arte/player/gatothrowingbox.png" id="11_lu8y5"]
 [ext_resource type="Texture2D" uid="uid://cykqq54mtg3tn" path="res://arte/masks/mascara gorila.png" id="12_nxixr"]
+[ext_resource type="Texture2D" uid="uid://bfxt7iq2q0fvj" path="res://arte/player/katto arriba-Sheet2.png" id="13_p6um2"]
 [ext_resource type="AudioStream" uid="uid://ob178ktktjuy" path="res://audio/sfx/FLAP.mp3" id="19_vvd46"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_enmt4"]
@@ -328,6 +329,42 @@ region = Rect2(192, 0, 96, 96)
 [sub_resource type="AtlasTexture" id="AtlasTexture_wuq31"]
 atlas = ExtResource("11_lu8y5")
 region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6nar"]
+atlas = ExtResource("13_p6um2")
+region = Rect2(0, 0, 120, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw4gw"]
+atlas = ExtResource("13_p6um2")
+region = Rect2(120, 0, 120, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4jq8"]
+atlas = ExtResource("13_p6um2")
+region = Rect2(240, 0, 120, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08syh"]
+atlas = ExtResource("13_p6um2")
+region = Rect2(360, 0, 120, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gile8"]
+atlas = ExtResource("13_p6um2")
+region = Rect2(480, 0, 120, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0inp"]
+atlas = ExtResource("13_p6um2")
+region = Rect2(600, 0, 120, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdq8b"]
+atlas = ExtResource("13_p6um2")
+region = Rect2(720, 0, 120, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36q7w"]
+atlas = ExtResource("13_p6um2")
+region = Rect2(840, 0, 120, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nphse"]
+atlas = ExtResource("13_p6um2")
+region = Rect2(960, 0, 120, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xko5r"]
 atlas = ExtResource("3_hldc1")
@@ -647,6 +684,38 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_u6nar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw4gw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4jq8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08syh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gile8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0inp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdq8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36q7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nphse")
+}],
+"loop": true,
+"name": &"wake_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_xko5r")
 }, {
 "duration": 1.0,
@@ -725,7 +794,7 @@ animation = &"flap"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xko5r")
-animation = &"pickup_mask_owl"
+animation = &"wake_up"
 
 [node name="MaskSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -14)

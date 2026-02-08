@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c8km452tpfn78"]
 
 [ext_resource type="Script" uid="uid://bapu0nwjafgea" path="res://scripts/door.gd" id="1_uvdjg"]
-[ext_resource type="Texture2D" uid="uid://c5qa6tj77b82a" path="res://arte/mechanisms/PuertaCerrada.PNG" id="2_uvdjg"]
+[ext_resource type="Texture2D" uid="uid://c5qa6tj77b82a" path="res://arte/mechanisms/PuertaCerrada.png" id="2_uvdjg"]
 [ext_resource type="AudioStream" uid="uid://daiquvvkbex6k" path="res://audio/sfx/PUERTA ABRIR.mp3" id="3_la1wf"]
 [ext_resource type="AudioStream" uid="uid://v62jhuc312ks" path="res://audio/sfx/PUERTA CERRAR.mp3" id="4_18pbm"]
 

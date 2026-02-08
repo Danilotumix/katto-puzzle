@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4da2c0melis5"]
+[gd_scene load_steps=6 format=3 uid="uid://d4da2c0melis5"]
 
 [ext_resource type="Texture2D" uid="uid://ciqygc5fsf5iu" path="res://arte/background/credits.png" id="1_0l22u"]
-[ext_resource type="Script" path="res://scripts/credits.gd" id="1_drpar"]
+[ext_resource type="Script" uid="uid://bjj8elv8g5xu6" path="res://scripts/credits.gd" id="1_drpar"]
 [ext_resource type="Texture2D" uid="uid://cmsqbkn17vvg" path="res://arte/background/ConceptA3.png" id="1_ff4am"]
 [ext_resource type="Texture2D" uid="uid://bpykphh83wxyq" path="res://arte/buttons/back.png" id="4_0s65u"]
+[ext_resource type="AudioStream" uid="uid://bu7yljby1m7hw" path="res://audio/CREDITOS LGJ.mp3" id="5_0s65u"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -14,10 +15,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_drpar")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
 texture = ExtResource("1_0l22u")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -30,11 +35,18 @@ texture = ExtResource("1_ff4am")
 
 [node name="BackButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1128.0
-offset_top = 584.0
-offset_right = 1224.0
-offset_bottom = 680.0
+offset_left = 488.0
+offset_top = 224.0
+offset_right = 584.0
+offset_bottom = 320.0
 scale = Vector2(0.823212, 0.8356088)
 texture_normal = ExtResource("4_0s65u")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-640, -360)
+stream = ExtResource("5_0s65u")
+volume_db = 8.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
