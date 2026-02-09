@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=3 uid="uid://dafjlljh1c1kd"]
+[gd_scene format=3 uid="uid://dafjlljh1c1kd"]
 
 [ext_resource type="Script" uid="uid://c4uunl0dc5rkh" path="res://scripts/katto.gd" id="1_ui8ui"]
 [ext_resource type="Texture2D" uid="uid://coeh1umq5lwfo" path="res://arte/player/gatowings.png" id="2_3dhs6"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://ddwix65qe6fqh" path="res://audio/sfx/LANZAR OBJETO.mp3" id="5_hldc1"]
 [ext_resource type="Texture2D" uid="uid://qjw4wrukoxiv" path="res://arte/player/gatojump1.png" id="5_jxl3n"]
 [ext_resource type="Texture2D" uid="uid://bft8ygyqi1bw7" path="res://arte/player/gato bunny mask.png" id="6_mvply"]
+[ext_resource type="Texture2D" uid="uid://cfie6vix1x3ug" path="res://arte/player/gatojump2box.png" id="8_f0d0a"]
 [ext_resource type="Texture2D" uid="uid://bi802kpipkdc0" path="res://arte/player/gatocarriyngboxwalk.png" id="8_jxl3n"]
 [ext_resource type="Texture2D" uid="uid://k3xx0dhghgde" path="res://arte/player/gato rowlet mask.png" id="8_nxixr"]
 [ext_resource type="Texture2D" uid="uid://cjayateu4el7q" path="res://arte/player/gatothrowingbox.png" id="11_lu8y5"]
@@ -499,7 +500,10 @@ animations = [{
 "name": &"jump",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_f0d0a")
+}],
 "loop": true,
 "name": &"jump_carry",
 "speed": 5.0
@@ -710,8 +714,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nphse")
 }],
-"loop": true,
-"name": &"wake_up",
+"loop": false,
+"name": &"waking_up",
 "speed": 5.0
 }, {
 "frames": [{
@@ -780,54 +784,55 @@ height = 78.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ui8ui"]
 size = Vector2(42, 2)
 
-[node name="Katto" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "mask_sprite", "collision_shape")]
+[node name="Katto" type="CharacterBody2D" unique_id=1298201983 node_paths=PackedStringArray("animated_sprite", "mask_sprite", "collision_shape")]
 script = ExtResource("1_ui8ui")
 animated_sprite = NodePath("AnimatedSprite2D")
 mask_sprite = NodePath("MaskSprite")
 collision_shape = NodePath("CollisionShape2D")
+pushing_frame_window = 5
 
-[node name="WingSprite" type="AnimatedSprite2D" parent="."]
+[node name="WingSprite" type="AnimatedSprite2D" parent="." unique_id=1324243083]
 visible = false
 position = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_lu8y5")
 animation = &"flap"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=204915962]
 sprite_frames = SubResource("SpriteFrames_xko5r")
-animation = &"wake_up"
+animation = &"waking_up"
 
-[node name="MaskSprite" type="Sprite2D" parent="."]
+[node name="MaskSprite" type="Sprite2D" parent="." unique_id=941979385]
 position = Vector2(0, -14)
 texture = ExtResource("12_nxixr")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2126555785]
 position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_o6emv")
 
-[node name="BoxMarker" type="Marker2D" parent="."]
+[node name="BoxMarker" type="Marker2D" parent="." unique_id=801761449]
 position = Vector2(0, -53)
 
-[node name="PickupRay" type="RayCast2D" parent="."]
+[node name="PickupRay" type="RayCast2D" parent="." unique_id=1431450778]
 position = Vector2(0, 21)
 target_position = Vector2(50, 0)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=2098793683]
 collision_layer = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2111957161]
 position = Vector2(0, -32)
 shape = SubResource("RectangleShape2D_ui8ui")
 
-[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="." unique_id=1140076776]
 stream = ExtResource("3_4e1m8")
 
-[node name="PickBoxSound" type="AudioStreamPlayer2D" parent="."]
+[node name="PickBoxSound" type="AudioStreamPlayer2D" parent="." unique_id=254993300]
 stream = ExtResource("4_0dncy")
 
-[node name="ThrowBoxSound" type="AudioStreamPlayer2D" parent="."]
+[node name="ThrowBoxSound" type="AudioStreamPlayer2D" parent="." unique_id=853066531]
 stream = ExtResource("5_hldc1")
 
-[node name="FlapSound" type="AudioStreamPlayer2D" parent="."]
+[node name="FlapSound" type="AudioStreamPlayer2D" parent="." unique_id=307395744]
 stream = ExtResource("19_vvd46")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

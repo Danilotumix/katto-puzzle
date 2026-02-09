@@ -1,6 +1,7 @@
 extends Node
 
-var mask_index: int = Constants.Mask.NONE
+var level : int = 0
+var mask_index : int = Constants.Mask.NONE
 var masks = [mask_index]
 #var masks = [mask_index, Constants.Mask.GORILLA, Constants.Mask.BUNNY]
 

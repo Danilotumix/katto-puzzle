@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var animated_sprite : AnimatedSprite2D
 @export var mask_sprite : Sprite2D
 @export var collision_shape : CollisionShape2D
+@export var pushing_frame_window : int
 
 @onready var hold_position = $BoxMarker
 @onready var pickup_ray = $PickupRay
@@ -30,8 +31,11 @@ var BUNNY_SPRITESHEET = preload("res://arte/masks/mascara conejo.png")
 var OWL_SPRITESHEET = preload("res://arte/masks/mascara buho.png")
 
 var walk_animation = "walk"
+var jump_animation = "jump"
 var idle_animation = "idle"
 
+var pushing_frames_left = 0
+var is_pushing = false
 var can_fly = false
 var is_locked = false
 var was_on_floor = false
@@ -74,7 +78,12 @@ func handleMaskChange():
 		mask_sprite.visible = false
 
 func _ready():
-	play_animation(idle_animation)
+	if Global.level == 1:
+		play_animation("waking_up")
+		is_locked = true
+		animated_sprite.animation_finished.connect(start_idle_animation, CONNECT_ONE_SHOT)
+	else:
+		play_animation(idle_animation)
 	handleMaskChange()
 
 func _process(delta):
@@ -115,7 +124,7 @@ func _physics_process(delta):
 			animation_lock = true
 		else:
 			animation_lock = false
-			play_animation("jump")
+			play_animation(jump_animation)
 			animation_lock = true
 	elif !was_on_floor:
 		animation_lock = false
@@ -137,29 +146,41 @@ func _physics_process(delta):
 	if direction and not is_locked:
 		velocity.x = direction * SPEED
 		animated_sprite.flip_h = (direction < 0)
-		mask_sprite.flip_h = (direction < 0)
 		if mask_sprite.visible:
+			mask_sprite.flip_h = (direction < 0)
 			if is_on_floor():
 				mask_sprite.position.x = 9 * sign(direction)
 				mask_sprite.frame = 2
 			else:
 				mask_sprite.position.x = 0
 				mask_sprite.frame = 0
-		play_animation(walk_animation)
+		if not is_pushing:
+			play_animation(walk_animation)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		mask_sprite.position.x = 0
-		mask_sprite.frame = 0
+		if mask_sprite.visible:
+			mask_sprite.position.x = 0
+			mask_sprite.frame = 0
 		play_animation(idle_animation)
-
-	if walk_animation != "walk":
-		mask_sprite.position.y += 3
-		mask_sprite.position.x += 5 * sign(direction)
 
 	was_on_floor = is_on_floor()
 
 	move_and_slide()
 	
+	if pushing_frames_left > 0:
+		pushing_frames_left -= 1
+
+	if pushing_frames_left == 0 or not direction or not is_on_floor():
+		pushing_frames_left = 0
+		is_pushing = false
+
+	if walk_animation != "walk":
+		mask_sprite.position.y += 3
+		mask_sprite.position.x += 5 * sign(direction)
+	elif is_pushing:
+		mask_sprite.position.y += 8
+		mask_sprite.position.x += 10 * sign(direction)
+
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		# If the thing we hit is a RigidBody2D (like the box)
@@ -167,6 +188,12 @@ func _physics_process(delta):
 			# Calculate the direction: collision.get_normal() points OUT of the box towards the player.
 			# We want to push opposite to that (INTO the box).
 			var push_direction = -collision.get_normal()
+
+			if held_object == null and direction and is_on_floor() and abs(push_direction.x) >= 0.5:
+				pushing_frames_left = pushing_frame_window
+				is_pushing = true
+				play_animation("push")
+
 			# Apply an impulse to the box to slide it
 			# We use inertia/mass to make sure it moves naturally
 			collision.get_collider().apply_central_impulse(push_direction * PUSH_FORCE)
@@ -201,6 +228,7 @@ func try_pickup():
 			pick_box_sound.play()
 			play_animation("carry")
 			walk_animation = "walk_carry"
+			jump_animation = "jump_carry"
 			idle_animation = "idle_carry"
 			animation_lock = true
 			animated_sprite.animation_finished.connect(reset_idle_animation, CONNECT_ONE_SHOT)
@@ -230,6 +258,7 @@ func lay_down_object():
 			box.apply_central_impulse(dir * THROW_POWER * 5)
 
 		walk_animation = "walk"
+		jump_animation = "jump"
 		idle_animation = "idle"
 
 		throw_box_sound.play()
@@ -266,6 +295,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func play_animation(animation):
 	if not animation_lock and not is_locked:
 		animated_sprite.play(animation);
+
+func start_idle_animation():
+	is_locked = false
+	animation_lock = false
+	play_animation(idle_animation)
 
 func reset_idle_animation():
 	animation_lock = false
